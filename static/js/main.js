@@ -72,3 +72,77 @@ function sign_up() {
         },
     });
 }
+
+function get_movies() {
+    $.ajax({
+        type: "GET",
+        url: "/movie/list",
+        data: {},
+        success: function (response) {
+            if (response["msg"] == "success") {
+                const movies = response.movies;
+                movies.map((movie) => {
+                    const poster = movie["image"];
+                    const title = movie["title"];
+                    const genre = movie["genre"];
+                    const producer = movie["producer"];
+                    const date = movie["date"];
+                    const rate = movie["rate"];
+                    const booking = movie["booking"];
+
+                    const temp_html = `
+                            <div class="card" style="width: 18rem">
+                        <img
+                            class="card-img-top"
+                            src="${poster}"
+                            alt="Card image cap"
+                        />
+                        <div style="margin-left: 10px" class="card-body">
+                            <span style="font-size: 20px" class="card-title"
+                                >${title}</span
+                            >
+                            <span
+                                style="display: block; font-size: 10px"
+                                class="card-title"
+                                >장르: ${genre}</span
+                            >
+                            <span
+                                style="
+                                    font-size: 13px;
+                                    display: block;
+                                    margin: 5px 0 0 0;
+                                "
+                                class="card-text"
+                                >감독: ${producer}</span
+                            >
+                            <span
+                                style="font-size: 12px; display: block"
+                                class="card-title"
+                                >예매율: ${booking}%</span
+                            >
+                            <a
+                                style="
+                                    display: block;
+                                    text-align: end;
+                                    margin-right: 20px;
+                                    color: inherit;
+                                    font-weight: 700;
+                                    height: 35px;
+                                "
+                                href="#"
+                                class="btn btn-primary"
+                                >상세보기</a
+                            >
+                        </div>
+                    </div>
+                    `;
+                    if (title != "") {
+                        $("#movies-box").append(temp_html);
+                    }
+                });
+            } else {
+                alert(response["msg"]);
+            }
+        },
+    });
+}

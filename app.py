@@ -38,7 +38,8 @@ def login():
     if request.method == "POST":
         username_receive = request.form['username_give']
         password_receive = request.form['password_give']
-     
+
+        
         username_result = hashed_password = db.users.find_one({'username': username_receive}, {"_id": False})["username"]
 
         if username_result is not None:
@@ -91,7 +92,7 @@ def get_movies():
     if request.method == "GET":
         movie_dict = list(db.movie_details.find({}, {"_id": False})[0:])
         if movie_dict is not None:
-            return jsonify({"movies": movie_dict, "msg": "success."})
+            return jsonify({"movies": movie_dict, "msg": "success"})
 
 @app.route("/movie/<movie_id>", methods=["GET"])
 def movie_detail(movie_id):
@@ -100,7 +101,7 @@ def movie_detail(movie_id):
     """
     movie = db.movie_details.find_one({'movie_id': int(movie_id)}, {"_id": False})
     if movie is not None:
-        return jsonify({"movie": movie, "msg": "success."})
+        return jsonify({"movie": movie, "msg": "success"})
 
 
 @app.route("/movie/<movie_id>/comment", methods=["POST"])
@@ -133,4 +134,3 @@ def like():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-
