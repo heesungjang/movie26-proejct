@@ -19,7 +19,8 @@ for li in ul:
     for item in items[:27]:
         #제목
         title = item.select_one("dl > dt > a").text.strip()
-
+        img = item.select_one("div > a > img").get("src")
+        
         #장르
         genres = item.select("dl > dd:nth-child(3) > dl > dd:nth-child(2)")
         movie_genre = ""
@@ -43,13 +44,12 @@ for li in ul:
         producer = item.select_one("dl > dd:nth-child(3) > dl > dd:nth-child(4) > span > a").text
 
         
-        doc = {"title": title, "genre": movie_genre, "rate": rate, "producer": producer, "date": parsed_date, "movie_id": movie_id}
+        doc = {"title": title, "genre": movie_genre, "rate": rate, "producer": producer, "date": parsed_date, "movie_id": movie_id, "image": img}
 
         movie_id+= 1
 
         db.movie_details.insert_one(doc)
     
-        
 
 						
 
