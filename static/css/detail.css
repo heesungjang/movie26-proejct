@@ -1,4 +1,22 @@
+@font-face {
+  font-family: 'SEBANG_Gothic_Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .detail-container {
+  font-family: 'GmarketSansMedium';
+  font-size: 15px;
   width: 350px;
   margin: auto;
   display: block;
@@ -10,10 +28,18 @@
   height: 350px;
 }
 
+.detail__left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* 영화제목 */
 .detail__right .detail__titles {
+  font-family: 'SEBANG_Gothic_Bold';
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .detail__titles {
@@ -28,13 +54,16 @@
 
 /* 스포일러보기 */
 .detail__titles a {
-  padding: 5px 15px;
+  padding: 7px;
+  width: 40px;
+  height: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--mint);
-  border: 2px solid var(--mint);
-  border-radius: 1em;
+  background-color: var(--green);
+  color: white;
+  border: 2px solid var(--green);
+  border-radius: 50%;
   transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
@@ -54,9 +83,8 @@
 }
 
 .detail__titles a:hover {
-  background-color: var(--mint);
-  color: #fff;
-  border-bottom: 4px solid darken(var(--mint), 10%);
+  background-color: white;
+  color: var(--green);
 }
 
 .detail__titles a:hover:before {
@@ -83,6 +111,7 @@
 .detail__contents li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 7px 0;
 }
 
@@ -91,8 +120,9 @@
 }
 
 .detail__contents svg {
-  color: var(--red);
-  height: 14px;
+  color: var(--yellow);
+  height: 13px;
+  transform: translateY(2px);
 }
 
 /* 리뷰*/
@@ -103,12 +133,15 @@
 .detail__review .review__title {
   display: flex;
   justify-content: space-between;
+  font-family: 'SEBANG_Gothic_Bold';
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: var(--black) 1px solid;
 }
 
 .detail__review .review__title h3 {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .detail__review .review__title button {
@@ -117,11 +150,13 @@
   border-radius: 10px;
 }
 
-.detail__review form input {
+.detail__review form textarea {
   width: 100%;
-  padding: 10px;
+  height: 100px;
+  padding: 5px;
   border: none;
-  border-bottom: var(--black) 1px solid;
+  font-size: 1rem;
+  resize: none;
 }
 
 .hide {
@@ -133,10 +168,65 @@
 }
 
 .detail__review .reviews .review {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail__review .reviews .review li {
   margin: 10px 0;
 }
 
 .detail__review .reviews .review span {
   margin-right: 10px;
   font-weight: bold;
+  color: var(--gray);
+}
+
+.detail__review .reviews .review button {
+  width: 30px;
+  height: 30px;
+  color: white;
+  border-radius: 50%;
+  line-height: 15px;
+  transition: 0.6s ease;
+}
+
+.detail__review .reviews .review button:hover {
+  display: block;
+  background-color: var(--green);
+}
+
+@media (min-width: 500px) {
+  .detail-container {
+    width: 500px;
+  }
+  .detail__left {
+    width: 500px;
+  }
+  .detail__contents {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contents__left,
+  .contents__right {
+    width: 200px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .detail-container {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  .detail__left {
+    width: 500px;
+  }
+
+  .detail__right {
+    width: 500px;
+  }
 }
