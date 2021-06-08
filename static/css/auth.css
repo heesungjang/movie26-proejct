@@ -58,9 +58,9 @@ body {
     border: none;
     outline: none;
     background: none;
-    font-size: 15px;
+    /* font-size: 15px; */
     color: #555;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 0px;
 }
 
 .username,
