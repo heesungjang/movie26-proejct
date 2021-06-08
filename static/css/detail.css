@@ -1,107 +1,142 @@
 .detail-container {
-    width: 350px;
-    margin: auto;
-    display: block;
+  width: 350px;
+  margin: auto;
+  display: block;
 }
 
 /* 영화이미지 */
 .detail__left {
-    width: 350px;
-    height: 350px;
+  width: 350px;
+  height: 350px;
 }
 
 /* 영화제목 */
 .detail__right .detail__titles {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .detail__titles {
-    font-weight: bold;
-    color: var(--black);
+  font-weight: bold;
+  color: var(--black);
 }
 
 .detail__titles .titles__title h3 {
-    font-size: 2rem;
-    margin-bottom: 7px;
+  font-size: 2rem;
+  margin-bottom: 7px;
 }
 
 /* 스포일러보기 */
 .detail__titles a {
-    padding: 5px 15px;
-    background-color: var(--mint);
-    color: white;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  padding: 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--mint);
+  border: 2px solid var(--mint);
+  border-radius: 1em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail__titles a:before {
+  content: '';
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -4.5em;
+  transform: skewX(-45deg) translateX(0);
+  transition: none;
+}
+
+.detail__titles a:hover {
+  background-color: var(--mint);
+  color: #fff;
+  border-bottom: 4px solid darken(var(--mint), 10%);
+}
+
+.detail__titles a:hover:before {
+  transform: skewX(-45deg) translateX(13.5em);
+  transition: all 0.5s ease-in-out;
+}
+@keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em);
+  }
 }
 
 /* 영화 소개 */
 .detail__contents {
-    display: block;
-    font-weight: bold;
-    color: var(--gray);
-    margin: 50px 0;
+  display: block;
+  font-weight: bold;
+  color: var(--gray);
+  margin: 50px 0;
 }
 
 .detail__contents li {
-    display: flex;
-    justify-content: space-between;
-    margin: 7px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 7px 0;
 }
 
 .detail__contents span {
-    color: var(--black);
+  color: var(--black);
 }
 
 .detail__contents svg {
-    color: var(--red);
-    height: 14px;
+  color: var(--red);
+  height: 14px;
 }
 
 /* 리뷰*/
 .detail__review {
-    color: var(--black);
+  color: var(--black);
 }
 
 .detail__review .review__title {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .detail__review .review__title h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .detail__review .review__title button {
-    width: 30px;
-    cursor: pointer;
-    border-radius: 10px;
+  width: 30px;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .detail__review form input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-bottom: var(--black) 1px solid;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: var(--black) 1px solid;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }
 
 .detail__review .reviews .review {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .detail__review .reviews .review span {
-    margin-right: 10px;
-    font-weight: bold;
+  margin-right: 10px;
+  font-weight: bold;
 }
