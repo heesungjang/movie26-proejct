@@ -91,14 +91,8 @@
   transform: skewX(-45deg) translateX(13.5em);
   transition: all 0.5s ease-in-out;
 }
-@keyframes sheen {
-  0% {
-    transform: skewY(-45deg) translateX(0);
-  }
-  100% {
-    transform: skewY(-45deg) translateX(12.5em);
-  }
-}
+
+
 
 /* 영화 소개 */
 .detail__contents {
@@ -197,7 +191,7 @@
   background-color: var(--green);
 }
 
-@media (min-width: 500px) {
+@media (min-width: 501px) {
   .detail-container {
     width: 500px;
   }
@@ -215,7 +209,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1001px) {
   .detail-container {
     width: 1000px;
     display: flex;
