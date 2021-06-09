@@ -12,7 +12,7 @@
   <body>
     <section class="detail-container">
       <div class="detail__left">
-        <img src="" alt="영화이름" />
+        <img src="../static/img/logo4.png" alt="영화이름" />
       </div>
       <div class="detail__right">
         <div class="detail__titles">
@@ -20,16 +20,25 @@
             <h3>TITLE</h3>
             <p>제목, 연도</p>
           </div>
-          <a href="#">스포일러보기</a>
+          <a href="#"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                clip-rule="evenodd"
+              /></svg
+          ></a>
         </div>
 
         <div class="detail__contents">
           <ul class="contents__left">
             <li>개봉 <span>2021.01.01</span></li>
             <li>장르 <span>스릴러</span></li>
-            <li>국가 <span>한국</span></li>
-            <li>등급 <span>15세이상관람가</span></li>
-            <li>러닝타임 <span>101분</span></li>
           </ul>
           <ul class="contents__right">
             <li>
@@ -53,8 +62,8 @@
                 점수</span
               >
             </li>
-            <li>누적관객 <span>168,119명</span></li>
-            <li>수상내역 <span>40회 황금촬영상, 2021</span></li>
+            <li>등급 <span>15세이상관람가</span></li>
+            <li>작가 <span>페페</span></li>
           </ul>
         </div>
         <div class="detail__review">
@@ -78,10 +87,48 @@
             </button>
           </div>
           <form id="jsReview" class="hide" action="">
-            <input type="text" placeholder="리뷰를 남겨주세요!" />
+            <textarea placeholder="리뷰를 적어주세요!"></textarea>
+            <input class="reviewBtn" type="submit" value="작성완료!" />
           </form>
           <ul class="reviews">
-            <li class="review"><span>ID</span>최고예요!</li>
+            <div class="review">
+              <li><span>ID</span>최고예요!</li>
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="review">
+              <li><span>ID</span>최고예요!</li>
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
+              </button>
+            </div>
           </ul>
         </div>
       </div>
