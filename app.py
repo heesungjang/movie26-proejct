@@ -22,11 +22,12 @@ app.config["JWT_SECRET_KEY"] = "super-secret"
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
-    is_logedin = False
-
-    if is_logedin is True:
+ 
+    token = request.cookies.get('mytoken')
+    
+    if token is not None:
         return render_template("index.html")
     else:
         return render_template("login.html")
@@ -39,7 +40,8 @@ def login():
     if request.method == "POST":
         username_receive = request.form['username_give']
         password_receive = request.form['password_give']
-     
+
+        
         username_result = hashed_password = db.users.find_one({'username': username_receive}, {"_id": False})["username"]
 
         if username_result is not None:
@@ -57,13 +59,14 @@ def login():
             else:
                 return jsonify({'result': "fail", "msg": "아이디, 비밀번호를 확인해주세요."})
             
-@app.route("/auth/signup", methods=["POST"])
+@app.route("/auth/signup", methods=["POST", "GET"])
 def signup():
     """
     회원가입 기능
     """
+    if request.method == "GET":
+        return render_template("signup.html")
     if request.method == "POST":
-        name_receive = request.form['name_give']
         username_receive = request.form['username_give']
         email_receive = request.form['email_give']
         password_receive = request.form['password_give']
@@ -73,14 +76,13 @@ def signup():
             hashed_password = bcrypt.generate_password_hash(password_receive, 10).decode("utf-8")
             
             doc = {
-            "name": name_receive,
             "username": username_receive,
             "email": email_receive,
             "password": hashed_password
             }
             
             db.users.insert_one(doc)
-            return jsonify({'result': "success.", "msg": "회원가입 성공."})
+            return jsonify({'result': "success", "msg": "회원가입 성공."})
     else:
         return jsonify({'result': "fail", "msg": "비밀번호가 일치하지 않습니다."})
 
@@ -92,7 +94,7 @@ def get_movies():
     if request.method == "GET":
         movie_dict = list(db.movie_details.find({}, {"_id": False})[0:])
         if movie_dict is not None:
-            return jsonify({"movies": movie_dict, "msg": "success."})
+            return jsonify({"movies": movie_dict, "msg": "success"})
 
 @app.route("/movie/<movie_id>", methods=["GET"])
 def movie_detail(movie_id):
@@ -101,7 +103,7 @@ def movie_detail(movie_id):
     """
     movie = db.movie_details.find_one({'movie_id': int(movie_id)}, {"_id": False})
     if movie is not None:
-        return jsonify({"movie": movie, "msg": "success."})
+        return jsonify({"movie": movie, "msg": "success"})
 
 
 @app.route("/movie/<movie_id>/comment", methods=["POST"])
@@ -134,4 +136,3 @@ def like():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-

@@ -32,9 +32,17 @@
             crossorigin="anonymous"
         ></script>
 
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+        ></script>
+
+        <!-- main css & js file link -->
         <link rel="stylesheet" href="/static/css/auth.css" />
     </head>
     <body>
+        <script type="text/javascript" src="/static/js/main.js"></script>
         <div class="container">
             <div class="row project-title-container">
                 <div class="col project-title">
@@ -44,7 +52,7 @@
                     <div class="login-div">
                         <div class="title">회원가입 🎉</div>
                         <div class="sub-title">welcome, movie 26</div>
-                        <form method="POST" action="/auth/login" class="fields">
+                        <div class="fields">
                             <div class="username">
                                 <svg class="svg-icon" viewBox="0 0 20 20">
                                     <path
@@ -52,9 +60,10 @@
                                     ></path>
                                 </svg>
                                 <input
+                                    id="input-username"
                                     type="text"
                                     class="user-input"
-                                    placeholder="이름"
+                                    placeholder="아이디"
                                     name="name"
                                     required
                                 />
@@ -66,10 +75,11 @@
                                     ></path>
                                 </svg>
                                 <input
-                                    type="password"
+                                    id="input-email"
+                                    type="email"
                                     name="password"
                                     class="pass-input"
-                                    placeholder="아이디"
+                                    placeholder="이메일"
                                     required
                                 />
                             </div>
@@ -80,6 +90,7 @@
                                     ></path>
                                 </svg>
                                 <input
+                                    id="input-password"
                                     type="password"
                                     name="password"
                                     class="pass-input"
@@ -94,6 +105,7 @@
                                     ></path>
                                 </svg>
                                 <input
+                                    id="input-password2"
                                     type="password"
                                     name="password"
                                     class="pass-input"
@@ -101,13 +113,13 @@
                                     required
                                 />
                             </div>
-                            <button type="submit" class="login-button">
+                            <button onclick="sign_up()" class="login-button">
                                 가입하기
                             </button>
                             <div class="link">
                                 <a href="#">로그인 돌아가기</a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
