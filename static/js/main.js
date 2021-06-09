@@ -178,11 +178,36 @@ function create_comment() {
     });
 }
 
-function re_request(movie_id) {
+function delete_comment(e) {
+    let comment_give = "";
+    if (e.target.tagName == "BUTTON") {
+        const parent = e.target.parentNode;
+        comment_give =
+            parent.firstChild.nextSibling.firstChild.nextSibling.textContent;
+    } else if (e.target.tagName == "svg") {
+        comment_give =
+            e.target.parentNode.parentNode.firstChild.nextSibling.firstChild
+                .nextSibling.textContent;
+    }
+
+    const re = /[0-9]/;
+    const url = window.location.pathname;
+    const movie_id = re.exec(url)[0];
+
     $.ajax({
-        type: "GET",
-        url: `/movie/${movie_id}`,
-        data: {},
-        success: function (response) {},
+        type: "POST",
+        url: `/movie/${movie_id}/comment/delete`,
+        data: {
+            movie_give: movie_id,
+            comment_give: comment_give,
+        },
+        success: function (response) {
+            if (response["result"] == "success") {
+                alert(response["msg"]);
+                location.reload();
+            } else if (response["result"] == "fail") {
+                alert(response["msg"]);
+            }
+        },
     });
 }
