@@ -73,8 +73,6 @@ function sign_up() {
                 alert(response["msg"]);
                 window.location.replace("/");
             } else {
-                
-                const html_temp `<span>"6"<span>`
                 alert(response["msg"]);
             }
         },
