@@ -27,7 +27,10 @@ def index():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"username": payload['id']})
-        return render_template("index.html")
+        doc = {
+            "username": payload['id']
+        }
+        return render_template("index.html", username=doc)
     except jwt.ExpiredSignatureError:
         return redirect("/auth/login")
     except jwt.exceptions.DecodeError:
@@ -160,8 +163,37 @@ def del_comment(movie_id):
 
 @app.route("/movie/1/like")
 def like():
+    token_receive = request.cookies.get("mytoken")
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    username = db.users.find_one({"username": payload["id"]})
+    
+    # movie_id_receive = movie_id
+    # action_receive = request.form["action_give"]
+    action_receive ="like"
+    doc ={
+    "user_id": "heesungj7", 
+    "movie_id": 1,
+    "action": "like"
+    }
 
-    pass
+    if action_receive =="like":
+        db.likes.insert_one(doc)
+        count = db.likes.count_documents({"movie_id": 1, "action": "like"})
+        print(count)
+        return render_template("login.html")
+    else:
+        db.likes.delete_one(doc)
+    # for post in like:
+    #     post["heart_by_me"] = bool(db.likes.find_one({"movie_id": movie["_id"], "type": "heart", "username": payload"id}))
+    return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
+
+
+
+
+
+
+

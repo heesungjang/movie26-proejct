@@ -30,6 +30,12 @@ function log_in() {
     });
 }
 
+function logout() {
+    console.log("hi");
+    $.cookie("mytoken", null, { path: "/" });
+    window.location.replace("/auth/login");
+}
+
 function sign_up() {
     const username = $("#input-username").val();
     const email = $("#input-email").val();
@@ -67,6 +73,8 @@ function sign_up() {
                 alert(response["msg"]);
                 window.location.replace("/");
             } else {
+                
+                const html_temp `<span>"6"<span>`
                 alert(response["msg"]);
             }
         },
