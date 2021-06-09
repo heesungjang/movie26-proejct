@@ -81,7 +81,9 @@ function get_movies() {
         success: function (response) {
             if (response["msg"] == "success") {
                 const movies = response.movies;
+
                 movies.map((movie) => {
+                    const movie_id = movie["movie_id"];
                     const poster = movie["image"];
                     const title = movie["title"];
                     const genre = movie["genre"];
@@ -129,7 +131,7 @@ function get_movies() {
                                     font-weight: 700;
                                     height: 35px;
                                 "
-                                href="#"
+                                href="/movie/${movie_id}"
                                 class="btn btn-primary"
                                 >상세보기</a
                             >

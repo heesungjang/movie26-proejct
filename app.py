@@ -22,9 +22,11 @@ app.config["JWT_SECRET_KEY"] = "super-secret"
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
+ 
     token = request.cookies.get('mytoken')
+    
     if token is not None:
         return render_template("index.html")
     else:
