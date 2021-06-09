@@ -21,7 +21,7 @@ function log_in() {
         },
         success: function (response) {
             if (response["result"] == "success") {
-                $.cookie("mytoken", response["token"], { path: "/" });
+                $.cookie("mytoken", response["token"], {path: "/"});
                 window.location.replace("/");
             } else {
                 alert(response["msg"]);
@@ -93,50 +93,23 @@ function get_movies() {
                     const booking = movie["booking"];
 
                     const temp_html = `
-                            <div class="card" style="width: 18rem">
+                            <section class="card">
                         <img
                             class="card-img-top"
                             src="${poster}"
                             alt="Card image cap"
                         />
-                        <div style="margin-left: 10px" class="card-body">
-                            <span style="font-size: 20px" class="card-title"
-                                >${title}</span
-                            >
-                            <span
-                                style="display: block; font-size: 10px"
-                                class="card-title"
-                                >장르: ${genre}</span
-                            >
-                            <span
-                                style="
-                                    font-size: 13px;
-                                    display: block;
-                                    margin: 5px 0 0 0;
-                                "
-                                class="card-text"
-                                >감독: ${producer}</span
-                            >
-                            <span
-                                style="font-size: 12px; display: block"
-                                class="card-title"
-                                >예매율: ${booking}%</span
-                            >
-                            <a
-                                style="
-                                    display: block;
-                                    text-align: end;
-                                    margin-right: 20px;
-                                    color: inherit;
-                                    font-weight: 700;
-                                    height: 35px;
-                                "
-                                href="/movie/${movie_id}"
-                                class="btn btn-primary"
-                                >상세보기</a
-                            >
+                        <h5 class="card-title">${title}</h5>
+
+                        <div class="card-body">
+                        <div class="card-info">
+                            <span class="card-genre">장르: ${genre}</span>
+                            <span class="card-producer">감독: ${producer}</span>
+                            <span class="card-booking">예매율: ${booking}%</span></div>
+                            
+                            <a href="/movie/${movie_id}" class="btn btn-primary">상세보기</a>
                         </div>
-                    </div>
+                    </section>
                     `;
                     if (title != "") {
                         $("#movies-box").append(temp_html);
