@@ -148,3 +148,41 @@ function get_movies() {
         },
     });
 }
+
+function create_comment() {
+    const re = /[0-9]/;
+    const url = window.location.pathname;
+
+    const movie_id = re.exec(url)[0];
+
+    const comment = $("#input-comment").val();
+    const token = $.cookie("mytoken");
+
+    $.ajax({
+        type: "POST",
+        url: `/movie/${movie_id}/comment`,
+        data: {
+            comment_give: comment,
+        },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "bearer " + token);
+        },
+        success: function (response) {
+            if (response["result"] == "success") {
+                alert(response["msg"]);
+                location.reload();
+            } else {
+                alert(response["msg"]);
+            }
+        },
+    });
+}
+
+function re_request(movie_id) {
+    $.ajax({
+        type: "GET",
+        url: `/movie/${movie_id}`,
+        data: {},
+        success: function (response) {},
+    });
+}

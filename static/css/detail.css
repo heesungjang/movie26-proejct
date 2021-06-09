@@ -1,232 +1,232 @@
 @font-face {
-  font-family: 'SEBANG_Gothic_Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "SEBANG_Gothic_Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .detail-container {
-  font-family: 'GmarketSansMedium';
-  font-size: 15px;
-  width: 350px;
-  margin: auto;
-  display: block;
+    font-family: "GmarketSansMedium";
+    font-size: 15px;
+    width: 350px;
+    margin: auto;
+    display: block;
 }
 
 /* 영화이미지 */
 .detail__left {
-  width: 350px;
-  height: 350px;
+    width: 350px;
+    height: 350px;
 }
 
 .detail__left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* 영화제목 */
 .detail__right .detail__titles {
-  font-family: 'SEBANG_Gothic_Bold';
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    font-family: "SEBANG_Gothic_Bold";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .detail__titles {
-  font-weight: bold;
-  color: var(--black);
+    font-weight: bold;
+    color: var(--black);
 }
 
 .detail__titles .titles__title h3 {
-  font-size: 2rem;
-  margin-bottom: 7px;
+    font-size: 2rem;
+    margin-bottom: 7px;
 }
 
 /* 스포일러보기 */
 .detail__titles a {
-  padding: 7px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--green);
-  color: white;
-  border: 2px solid var(--green);
-  border-radius: 50%;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  overflow: hidden;
+    padding: 7px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--green);
+    color: white;
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
 .detail__titles a:before {
-  content: '';
-  background-color: rgba(255, 255, 255, 0.5);
-  height: 100%;
-  width: 3em;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -4.5em;
-  transform: skewX(-45deg) translateX(0);
-  transition: none;
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
 }
 
 .detail__titles a:hover {
-  background-color: white;
-  color: var(--green);
+    background-color: white;
+    color: var(--green);
 }
 
 .detail__titles a:hover:before {
-  transform: skewX(-45deg) translateX(13.5em);
-  transition: all 0.5s ease-in-out;
+    transform: skewX(-45deg) translateX(13.5em);
+    transition: all 0.5s ease-in-out;
 }
 @keyframes sheen {
-  0% {
-    transform: skewY(-45deg) translateX(0);
-  }
-  100% {
-    transform: skewY(-45deg) translateX(12.5em);
-  }
+    0% {
+        transform: skewY(-45deg) translateX(0);
+    }
+    100% {
+        transform: skewY(-45deg) translateX(12.5em);
+    }
 }
 
 /* 영화 소개 */
 .detail__contents {
-  display: block;
-  font-weight: bold;
-  color: var(--gray);
-  margin: 50px 0;
+    display: block;
+    font-weight: bold;
+    color: var(--gray);
+    margin: 50px 0;
 }
 
 .detail__contents li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 7px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7px 0;
 }
 
 .detail__contents span {
-  color: var(--black);
+    color: var(--black);
 }
 
 .detail__contents svg {
-  color: var(--yellow);
-  height: 13px;
-  transform: translateY(2px);
+    color: var(--yellow);
+    height: 13px;
+    transform: translateY(2px);
 }
 
 /* 리뷰*/
 .detail__review {
-  color: var(--black);
+    color: var(--black);
 }
 
 .detail__review .review__title {
-  display: flex;
-  justify-content: space-between;
-  font-family: 'SEBANG_Gothic_Bold';
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: var(--black) 1px solid;
+    display: flex;
+    justify-content: space-between;
+    font-family: "SEBANG_Gothic_Bold";
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: var(--black) 1px solid;
 }
 
 .detail__review .review__title h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .detail__review .review__title button {
-  width: 30px;
-  cursor: pointer;
-  border-radius: 10px;
+    width: 30px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .detail__review form textarea {
-  width: 100%;
-  height: 100px;
-  padding: 5px;
-  border: none;
-  font-size: 1rem;
-  resize: none;
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    border: none;
+    font-size: 1rem;
+    resize: none;
 }
 
 .hide {
-  display: none;
+    display: none;
 }
 
 .show {
-  display: block;
+    display: block;
 }
 
 .detail__review .reviews .review {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .detail__review .reviews .review li {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .detail__review .reviews .review span {
-  margin-right: 10px;
-  font-weight: bold;
-  color: var(--gray);
+    margin-right: 10px;
+    font-weight: bold;
+    color: var(--gray);
 }
 
 .detail__review .reviews .review button {
-  width: 30px;
-  height: 30px;
-  color: white;
-  border-radius: 50%;
-  line-height: 15px;
-  transition: 0.6s ease;
+    width: 30px;
+    height: 30px;
+    color: white;
+    border-radius: 50%;
+    line-height: 15px;
+    transition: 0.6s ease;
 }
 
 .detail__review .reviews .review button:hover {
-  display: block;
-  background-color: var(--green);
+    display: block;
+    background-color: var(--green);
 }
 
 @media (min-width: 500px) {
-  .detail-container {
-    width: 500px;
-  }
-  .detail__left {
-    width: 500px;
-  }
-  .detail__contents {
-    display: flex;
-    justify-content: space-between;
-  }
+    .detail-container {
+        width: 500px;
+    }
+    .detail__left {
+        width: 500px;
+    }
+    .detail__contents {
+        display: flex;
+        justify-content: space-between;
+    }
 
-  .contents__left,
-  .contents__right {
-    width: 200px;
-  }
+    .contents__left,
+    .contents__right {
+        width: 200px;
+    }
 }
 
 @media (min-width: 1000px) {
-  .detail-container {
-    width: 1000px;
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-  }
-  .detail__left {
-    width: 500px;
-  }
+    .detail-container {
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+    }
+    .detail__left {
+        width: 500px;
+    }
 
-  .detail__right {
-    width: 500px;
-  }
+    .detail__right {
+        width: 500px;
+    }
 }
