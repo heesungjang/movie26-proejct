@@ -153,9 +153,6 @@
 
 }
 
-.greeting .greeting__text:hover {
-
-}
 
 /*컨텐츠 영역*/
 main.contents-container {
@@ -168,8 +165,9 @@ main.contents-container {
 }
 
 .card .card-title {
-    font-size: 1.4rem;
     margin: 10px 0;
+    font-size:1.2rem;
+    font-weight:700;
 }
 
 .card .card-body {
@@ -178,14 +176,16 @@ main.contents-container {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 30px;
-
 }
 
 .card .card-body .card-info {
-    display: flex;
+    display:flex;
     flex-direction: column;
 }
 
+.card .card-body .card-info p{
+    margin:2px 0;
+}
 
 .card .card-body .card-genre {
 }
@@ -225,7 +225,6 @@ main.contents-container {
 .card .card-body .btn:hover {
     background-color: var(--green);
     color: #fff;
-    border-bottom: 4px solid hsl(var(--green), 10%);
 }
 
 .card .card-body .btn:hover:before {
