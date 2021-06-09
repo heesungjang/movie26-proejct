@@ -120,12 +120,13 @@
                         {% for review in reviews%}
                         <div class="review">
                             <li>
-                                <span>{{review["user_id"]}}</span
-                                >{{review["comment"]}}
+                                <span class="review-text"
+                                    >{{review["comment"]}}</span
+                                >
+                                <span>{{review["user_id"]}}</span>
                             </li>
-                            <button>
+                            <button class="jsReviewDelete">
                                 <svg
-                                    id="jsReviewDelete"
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-6 w-6"
                                     fill="none"
@@ -152,6 +153,8 @@
             const BTN_ICON = REVIEW_BTN.querySelector("svg");
             const REVIEW = document.getElementById("jsReview");
             const REVIEW_SUBMIT = document.getElementById("jsReviewSubmit");
+            const REVIEW_DELETE =
+                document.getElementsByClassName("jsReviewDelete");
 
             function onClickReviewBtn() {
                 REVIEW.classList.toggle("show");
@@ -164,6 +167,10 @@
                 REVIEW_BTN.addEventListener("click", onClickReviewBtn);
             if (REVIEW_SUBMIT)
                 REVIEW_SUBMIT.addEventListener("click", create_comment);
+            if (REVIEW_DELETE)
+                Array.from(REVIEW_DELETE).forEach(function (DELETE) {
+                    DELETE.addEventListener("click", delete_comment);
+                });
         </script>
     </body>
 </html>

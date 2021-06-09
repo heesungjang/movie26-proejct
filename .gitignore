@@ -1,1 +1,7 @@
 /vnev
+
+venv
+
+.vscode
+
+.gitignore
