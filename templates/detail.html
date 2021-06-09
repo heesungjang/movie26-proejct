@@ -122,6 +122,7 @@
                         {% for review in reviews%}
                         <div class="review">
                             <li>
+<<<<<<< HEAD
                                 <span class="review-text"
                                     >{{review["comment"]}}</span
                                 >
@@ -129,6 +130,14 @@
                             </li>
                             <button class="jsReviewDelete">
                                 <svg
+=======
+                                <span>{{review["user_id"]}}</span
+                                >{{review["comment"]}}
+                            </li>
+                            <button>
+                                <svg
+                                    id="jsReviewDelete"
+>>>>>>> 2f13bcd91542a8b5921ae51704986a7d0d4e4894
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-6 w-6"
                                     fill="none"

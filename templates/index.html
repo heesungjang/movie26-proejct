@@ -1,103 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Movie 26</title>
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
-        />
-        <link rel="stylesheet" href="/static/css/index.css" />
-        <script
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Movie 26</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+    <script
             src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
             type="text/javascript"
-        ></script>
+    ></script>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                get_movies();
-            });
-        </script>
-    </head>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            get_movies();
+        });
+    </script>
+</head>
 
-    <body>
-        <script type="text/javascript" src="/static/js/main.js"></script>
-        <div style="width: 350px; margin: auto; display: block">
-            <nav
-                class="navbar"
-                role="navigation"
-                aria-label="main navigation"
-                style="margin-top: 15px"
-            >
-                <div class="navbar-brand">
-                    <img
-                        src="/static/img/group.svg"
-                        width="50"
-                        height="60"
-                        style="margin-left: 20px"
-                    />
-
-                    <a
-                        role="button"
-                        class="navbar-burger"
-                        aria-label="menu"
-                        aria-expanded="false"
-                        data-target="navbarBasicExample"
-                    >
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div id="navbarBasicExample" class="navbar-menu">
-                    <div class="navbar-start">
-                        <a
-                            class="navbar-item"
-                            style="font-weight: 700; font-size: 25px"
-                        >
-                            Movie 26
-                        </a>
-                    </div>
-                </div>
-                <div class="navbar-end navbar-menu">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-light"> Log in </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="top-container" style="margin-top: 20px">
-                <span
-                    style="
-                        font-weight: 700;
-                        font-size: 15px;
-                        margin-bottom: 10px;
-                    "
-                >
-                    👋 Hi, username
-                </span>
-                <span
-                    style="
-                        font-weight: 700;
-                        font-size: 20px;
-                        display: block;
-                        margin-top: 10px;
-                    "
-                >
-                    재밌는 영화 뭐 없나...?
-                </span>
-            </div>
+<body>
+<script type="text/javascript" src="/static/js/main.js"></script>
+<div class="index__container">
+    <div class="splash ">
+        <svg class="logo" width="1581" height="1581" viewBox="0 0 1581 1581" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M1581 269.655C1581 769.681 262.534 1321.6 162.698 1321.6C106.725 1321.6 43.219 1298.01 43.219 1203.67C43.219 1172.15 63.1184 1126.59 98.0373 1071.67L97.9985 1071.7L5.44804 771.055C-7.08371 730.353 2.85179 678.787 26.5668 661.425L42.4724 649.782C71.2998 628.68 103.744 631.826 131.187 658.383L299.204 821.006C364.622 750.066 438.831 675.792 517.046 602.666L189.622 214.297C163.719 183.569 163.995 114.074 190.141 84.0451L216.925 53.2793C261.503 2.07706 315.696 -13.046 366.598 11.4995L911.294 274.175C1081.13 150.932 1234.68 66.8155 1325.57 66.8155C1349.84 66.8155 1374.15 67.9916 1397.61 71.0568L1233.11 206.82L1229.18 307.978L1483.09 94.5774C1543.96 121.116 1581 170.646 1581 269.655ZM918.354 1132.81L1121.53 1554.78C1133.91 1580.5 1154.08 1588.24 1171.07 1573.8L1198.28 1550.67C1247.9 1508.51 1277.12 1412.89 1270.77 1313.54L1245.33 915.925C1243.76 891.322 1230.1 875.751 1217.32 883.978L927.192 1070.83C913.071 1079.93 908.457 1112.26 918.354 1132.81Z"
+                  fill="#3D3D3D"/>
+        </svg>
+        <div class="title">
+            Movie<span>26</span>
         </div>
-        <section
-            id="movies-box"
-            class="section"
-            style="width: 350px; margin: auto; display: block"
-        ></section>
-    </body>
+    </div>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <svg width="1581" height="1581" viewBox="0 0 1581 1581" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1581 269.655C1581 769.681 262.534 1321.6 162.698 1321.6C106.725 1321.6 43.219 1298.01 43.219 1203.67C43.219 1172.15 63.1184 1126.59 98.0373 1071.67L97.9985 1071.7L5.44804 771.055C-7.08371 730.353 2.85179 678.787 26.5668 661.425L42.4724 649.782C71.2998 628.68 103.744 631.826 131.187 658.383L299.204 821.006C364.622 750.066 438.831 675.792 517.046 602.666L189.622 214.297C163.719 183.569 163.995 114.074 190.141 84.0451L216.925 53.2793C261.503 2.07706 315.696 -13.046 366.598 11.4995L911.294 274.175C1081.13 150.932 1234.68 66.8155 1325.57 66.8155C1349.84 66.8155 1374.15 67.9916 1397.61 71.0568L1233.11 206.82L1229.18 307.978L1483.09 94.5774C1543.96 121.116 1581 170.646 1581 269.655ZM918.354 1132.81L1121.53 1554.78C1133.91 1580.5 1154.08 1588.24 1171.07 1573.8L1198.28 1550.67C1247.9 1508.51 1277.12 1412.89 1270.77 1313.54L1245.33 915.925C1243.76 891.322 1230.1 875.751 1217.32 883.978L927.192 1070.83C913.071 1079.93 908.457 1112.26 918.354 1132.81Z"
+                      fill="#3D3D3D"/>
+            </svg>
+            <div class="navbar__title">
+                <a class="navbar-item" id="jsTitle">
+                    Movie<span id="jsTitle26">26</span>
+                </a>
+            </div>
+
+        </div>
+        <div id="navbarBasicExample" class="navber__title">
+
+        </div>
+        <div class="navbar__control">
+            <a class="logout is-primary">
+                <span>logout</span>
+            </a>
+        </div>
+    </nav>
+    <section class="greeting">
+        <p class="greeting__user">👋 Hi, {username}</p>
+        <p class="greeting__text">재밌는 영화 뭐 없나...?</p>
+    </section>
+
+    <main id="movies-box"
+          class="contents-container">
+
+    </main>
+</div>
+<script>
+    $('#jsTitle').hover(function () {
+        $('#jsTitle26').css("color", "#00d1b2");
+    }, function () {
+        $('#jsTitle26').css("color", "#aaa69d");
+    })
+
+</script>
+</body>
 </html>
