@@ -111,13 +111,13 @@ def movie_detail(movie_id):
     if token_receive is None:
         return redirect("/")
 
-
+    count =   db.likes.count_documents({"movie_id": movie_id, "action": "like"})
     movie = db.movie_details.find_one({'movie_id': int(movie_id)}, {"_id": False})
     reviews = db.comments.find({'movie_id': movie_id})
     
 
     if movie is not None:
-        return render_template("detail.html", movie=movie, reviews=reviews)
+        return render_template("detail.html", movie=movie, reviews=reviews, count=count)
 
 
 @app.route("/movie/<movie_id>/comment", methods=["POST"])
@@ -161,31 +161,35 @@ def del_comment(movie_id):
         else:
             return jsonify({"result": "fail", "msg": "다른 사람의 댓글은 삭제할 수 없습니다."})
 
-@app.route("/movie/1/like")
-def like():
+@app.route("/movie/<movie_id>/like", methods=["POST"])
+def like(movie_id):
     token_receive = request.cookies.get("mytoken")
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
     username = db.users.find_one({"username": payload["id"]})
     
-    # movie_id_receive = movie_id
-    # action_receive = request.form["action_give"]
-    action_receive ="like"
-    doc ={
-    "user_id": "heesungj7", 
-    "movie_id": 1,
-    "action": "like"
-    }
+    action_receive = request.form["action_give"]
+    
 
     if action_receive =="like":
+        doc ={
+        "user_id": username["username"], 
+        "movie_id": movie_id,
+        "action": action_receive
+        }
         db.likes.insert_one(doc)
-        count = db.likes.count_documents({"movie_id": 1, "action": "like"})
-        print(count)
-        return render_template("login.html")
-    else:
+        count = db.likes.count_documents({"movie_id": movie_id, "action": "like"})
+        
+        return jsonify({"result": "liked", "count": count})
+    elif action_receive =="unlike":
+        doc ={
+        "user_id": username["username"], 
+        "movie_id": movie_id,
+        "action": "like"
+        }
         db.likes.delete_one(doc)
-    # for post in like:
-    #     post["heart_by_me"] = bool(db.likes.find_one({"movie_id": movie["_id"], "type": "heart", "username": payload"id}))
-    return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다."})
+        count = db.likes.count_documents({"movie_id": movie_id, "action": "like"})
+        
+        return jsonify({"result": "unliked", "count":count})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

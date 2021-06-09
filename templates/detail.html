@@ -19,13 +19,38 @@
         <title>Document</title>
     </head>
     <body>
-        <script type="text/javascript" src="/static/js/main.js"></script>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <svg
+                    width="1581"
+                    height="1581"
+                    viewBox="0 0 1581 1581"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M1581 269.655C1581 769.681 262.534 1321.6 162.698 1321.6C106.725 1321.6 43.219 1298.01 43.219 1203.67C43.219 1172.15 63.1184 1126.59 98.0373 1071.67L97.9985 1071.7L5.44804 771.055C-7.08371 730.353 2.85179 678.787 26.5668 661.425L42.4724 649.782C71.2998 628.68 103.744 631.826 131.187 658.383L299.204 821.006C364.622 750.066 438.831 675.792 517.046 602.666L189.622 214.297C163.719 183.569 163.995 114.074 190.141 84.0451L216.925 53.2793C261.503 2.07706 315.696 -13.046 366.598 11.4995L911.294 274.175C1081.13 150.932 1234.68 66.8155 1325.57 66.8155C1349.84 66.8155 1374.15 67.9916 1397.61 71.0568L1233.11 206.82L1229.18 307.978L1483.09 94.5774C1543.96 121.116 1581 170.646 1581 269.655ZM918.354 1132.81L1121.53 1554.78C1133.91 1580.5 1154.08 1588.24 1171.07 1573.8L1198.28 1550.67C1247.9 1508.51 1277.12 1412.89 1270.77 1313.54L1245.33 915.925C1243.76 891.322 1230.1 875.751 1217.32 883.978L927.192 1070.83C913.071 1079.93 908.457 1112.26 918.354 1132.81Z"
+                        fill="#3D3D3D"
+                    />
+                </svg>
+                <div class="navbar__title">
+                    <a class="navbar-item" id="jsTitle" href="/">
+                        Movie<span id="jsTitle26">26</span>
+                    </a>
+                </div>
+            </div>
+            <div id="navbarBasicExample" class="navber__title"></div>
+            <div class="navbar__control">
+                <a onclick="logout()" class="logout is-primary">
+                    <span>logout</span>
+                </a>
+            </div>
+        </nav>
         <section class="detail-container">
             <div class="detail__left">
                 <iframe
-                    width="560"
-                    height="315"
-                    src='https://www.youtube.com/embed/{{movie["video"]}}'
+                    id="movie-trailer"
+                    src='https://www.youtube.com/embed/{{ movie["video"] }}'
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -36,28 +61,32 @@
             <div class="detail__right">
                 <div class="detail__titles">
                     <div class="titles__title">
-                        <h3>{{movie["title"]}}</h3>
-                        <p>예매율: {{movie["booking"]}}</p>
+                        <h3>{{ movie["title"] }}</h3>
+                        <p>예매율: {{ movie["booking"] }}</p>
                     </div>
-                    <a href="#"
-                        ><svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                                clip-rule="evenodd"
-                            /></svg
-                    ></a>
+                    <div class="detail__control">
+                        <a id="jsLike" onclick="like_movie()">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </a>
+                        <span id="like-count">{{count}}</span>
+                    </div>
                 </div>
 
                 <div class="detail__contents">
                     <ul class="contents__left">
-                        <li>개봉 <span>{{movie["date"]}}</span></li>
-                        <li>장르 <span>{{movie["genre"]}}</span></li>
+                        <li>개봉 <span>{{ movie["date"] }}</span></li>
+                        <li>장르 <span>{{ movie["genre"] }}</span></li>
                     </ul>
                     <ul class="contents__right">
                         <li>
@@ -78,11 +107,11 @@
                                         d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
                                     ></path>
                                 </svg>
-                                {{movie["rate"]}}</span
+                                {{ movie["rate"] }}</span
                             >
                         </li>
                         <li>등급 <span>15세이상관람가</span></li>
-                        <li>감독 <span>{{movie["producer"]}}</span></li>
+                        <li>감독 <span>{{ movie["producer"] }}</span></li>
                     </ul>
                 </div>
                 <div class="detail__review">
@@ -105,27 +134,29 @@
                             </svg>
                         </button>
                     </div>
-                    <div id="jsReview" class="hide">
+                    <div id="jsReview" class="write-review hide">
                         <textarea
                             id="input-comment"
                             placeholder="리뷰를 적어주세요!"
                         ></textarea>
-                        <input
-                            id="jsReviewSubmit"
-                            class="reviewBtn"
-                            type="submit"
-                            value="작성완료!"
-                        />
+                        <div class="write-review__control">
+                            <input
+                                id="jsReviewSubmit"
+                                class="reviewBtn"
+                                type="submit"
+                                value="작성완료"
+                            />
+                        </div>
                     </div>
                     {% if reviews %}
                     <ul class="reviews">
-                        {% for review in reviews%}
+                        {% for review in reviews %}
                         <div class="review">
                             <li>
                                 <span class="review-text"
-                                    >{{review["comment"]}}</span
+                                    >{{ review["comment"] }}</span
                                 >
-                                <span>{{review["user_id"]}}</span>
+                                <span>{{ review["user_id"] }}</span>
                             </li>
                             <button class="jsReviewDelete">
                                 <svg
@@ -157,10 +188,13 @@
             const REVIEW_SUBMIT = document.getElementById("jsReviewSubmit");
             const REVIEW_DELETE =
                 document.getElementsByClassName("jsReviewDelete");
+            const REVIEW_LIKE = document.getElementById("jsLike");
+
+            const LOGOUT = document.getElementsByClassName("navbar__control");
 
             function onClickReviewBtn() {
                 REVIEW.classList.toggle("show");
-                if (REVIEW.classList[1] === "show")
+                if (REVIEW.classList[2] === "show")
                     BTN_ICON.style.transform = "rotate(180deg)";
                 else BTN_ICON.style.transform = "rotate(0deg)";
             }
@@ -173,6 +207,13 @@
                 Array.from(REVIEW_DELETE).forEach(function (DELETE) {
                     DELETE.addEventListener("click", delete_comment);
                 });
+            if (REVIEW_LIKE)
+                REVIEW_LIKE.addEventListener("click", function () {
+                    REVIEW_LIKE.classList.toggle("like");
+                });
+
+            if (LOGOUT) LOGOUT.addEventListener("click", logout());
         </script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
     </body>
 </html>

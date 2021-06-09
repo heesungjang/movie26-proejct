@@ -217,3 +217,41 @@ function delete_comment(e) {
         },
     });
 }
+
+function like_movie() {
+    const re = /[0-9]/;
+    const url = window.location.pathname;
+    const movie_id = re.exec(url)[0];
+
+    const a_like = $(`#jsLike`);
+    if (a_like.hasClass("like")) {
+        console.log("있다");
+        $.ajax({
+            type: "POST",
+            url: `/movie/${movie_id}/like`,
+            data: {
+                action_give: "like",
+            },
+            success: function (response) {
+                const count = response["count"];
+
+                const html_temp = `<span id="like-count">${count}</span>`;
+                $("#like-count").text(count);
+            },
+        });
+    } else {
+        console.log("없다");
+        $.ajax({
+            type: "POST",
+            url: `/movie/${movie_id}/like`,
+            data: {
+                action_give: "unlike",
+            },
+            success: function (response) {
+                const count = response["count"];
+                const html_temp = `<span>${count}</span>`;
+                $("#like-count").text(count);
+            },
+        });
+    }
+}
