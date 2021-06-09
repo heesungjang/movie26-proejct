@@ -125,13 +125,28 @@ def comment(movie_id):
         return jsonify({"asd":"asd"})
     
 
-@app.route("/movie/like")
+@app.route("/movie/1/like", methods=['POST'])
 def like():
-    """
-    여기서 좋아요 기능 구현
-    """
-    pass
+    token_receive = request.cookies.get('token')
+    payload = jwt.decode(token_receive, SECRET_KEY, algoritims=['HS256'])
+    user_info = db.users.find_one({"username": payload["id"]}
+    
+    movie_id_receive = request.form["movie_id_give"]
+    action_receive = request.form["action_give"]
 
+    doc = {
+        "movie_id": movie_id_receive,
+        "user_id": user_info["username"], 
+    }
+
+    if action_receive =="like":
+        db.likes.insert_one(doc)
+    else:
+        db.likes.delete_one(doc)
+    for post in like:
+        post["heart_by_me"] = bool(db.likes.find_one({"movie_id": movie["_id"], "type": "heart", "username": payload"id}))
+    return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "posts": posts})  
+      
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
