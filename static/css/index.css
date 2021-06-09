@@ -46,7 +46,7 @@
 
 .splash .logo {
     width: 25%;
-    height: 15%;
+    height: 18%;
     animation: flyingPlane 5s ease;
 }
 
@@ -242,6 +242,10 @@ main.contents-container {
     .splash .logo{
         height: 25%;
     }
+
+    .splash .title {
+    font-size: 5rem;
+}
     .index__container {
         width: 500px;
     }
