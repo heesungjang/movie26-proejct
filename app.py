@@ -4,14 +4,12 @@ from pymongo.encryption import Algorithm
 import requests
 from datetime import (datetime, timedelta)
 import jwt
+import re
 
 from bs4 import BeautifulSoup
 from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
 from flask import Flask, render_template, jsonify, request, redirect
-
-
-
 
 client = MongoClient('localhost', 27017)
 db = client.mini_project
@@ -78,6 +76,18 @@ def signup():
         password_receive = request.form['password_give']
         password2_receive = request.form['password2_give']
 
+        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+        
+        if re.search(regex, email_receive) is None:
+            return jsonify({'result': "fail", "msg": "이메일 형식을 확인하세요."})
+
+        existing_username = db.users.find_one({"username":username_receive})
+        existing_email = db.users.find_one({"email": email_receive})
+        if existing_username is not None:
+            return jsonify({'result': "fail", "msg": "이미 존재하는 아이디 입니다."})
+        if existing_email is not None:
+            return jsonify({'result': "fail", "msg": "이미 존재하는 이메일 입니다."})
+
         if (password_receive == password2_receive):
             hashed_password = bcrypt.generate_password_hash(password_receive, 10).decode("utf-8")
             
@@ -89,8 +99,8 @@ def signup():
             
             db.users.insert_one(doc)
             return jsonify({'result': "success", "msg": "회원가입 성공."})
-    else:
-        return jsonify({'result': "fail", "msg": "비밀번호가 일치하지 않습니다."})
+        else:
+            return jsonify({'result': "fail", "msg": "비밀번호가 일치하지 않습니다."})
 
 @app.route("/movie/list", methods=["GET"])
 def get_movies():
