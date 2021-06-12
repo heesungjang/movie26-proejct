@@ -74,37 +74,38 @@ s=[
 ]
 
 v=[
-            "https://youtu.be/yfSMTFzw-Kw",
-            "https://youtu.be/-ph-C38VJkI",
-            "https://youtu.be/L9Y-hn2COm0",
-            "https://youtu.be/KbFhzL1b8iQ",
-            "https://youtu.be/VQGCKyvzIM4",
-            "https://youtu.be/4gxMoIF1f8c",
-            "https://youtu.be/GIucaWI15G4",
-            "https://youtu.be/2oGNXxeoZbE",
-            "https://youtu.be/kymRai9G4rY",
-            "https://youtu.be/BuSN_zYbfT4",
-            "https://youtu.be/SYiEc5GO0-8",
-            "https://youtu.be/itmdHqYW84Y",
-            "https://youtu.be/IEKt_GtoAz0",
-            "https://youtu.be/ILCB_f0IIyI",
-            "https://youtu.be/tfmRVC_GADw",
-            "https://youtu.be/RIi45-Aytt8",
-            "https://youtu.be/dxpLWlQsXH4",
-            "https://youtu.be/_tpCtzSPmO0",
-            "https://youtu.be/_wXverrh8yg",
-            "https://youtu.be/13fjHivAA-8",
-            "https://youtu.be/EU6vg5QMYbg",
-            "https://youtu.be/BEnu5wZnzIw",
-            "https://youtu.be/0pqVUiDVpjw",
-            "https://youtu.be/Kujn4nxrFBs",
-            "https://youtu.be/jhu20svTpO0",
-            "https://youtu.be/l6CZc3y0FsA",
-            "https://youtu.be/w_ALTnlrv3k"
+            "yfSMTFzw-Kw",
+            "-ph-C38VJkI",
+            "L9Y-hn2COm0",
+            "KbFhzL1b8iQ",
+            "VQGCKyvzIM4",
+            "4gxMoIF1f8c",
+            "GIucaWI15G4",
+            "2oGNXxeoZbE",
+            "kymRai9G4rY",
+            "BuSN_zYbfT4",
+            "SYiEc5GO0-8",
+            "itmdHqYW84Y",
+            "IEKt_GtoAz0",
+            "ILCB_f0IIyI",
+            "tfmRVC_GADw",
+            "RIi45-Aytt8",
+            "dxpLWlQsXH4",
+            "_tpCtzSPmO0",
+            "_wXverrh8yg",
+            "13fjHivAA-8",
+            "EU6vg5QMYbg",
+            "BEnu5wZnzIw",
+            "0pqVUiDVpjw",
+            "Kujn4nxrFBs",
+            "jhu20svTpO0",
+            "l6CZc3y0FsA",
+            "w_ALTnlrv3k"
         ]
 
 
 ul = soup.select("#content > div.article > div:nth-child(1) > div.lst_wrap > ul")
+
 
 for li in ul:
     items = li.select("li")
@@ -149,7 +150,3 @@ for li in ul:
         video_id+=1
 
         db.movie_details.insert_one(doc)
-
-
-
-        

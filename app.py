@@ -1,47 +1,48 @@
+from flask.helpers import url_for
+import flask_jwt_extended
 from pymongo.encryption import Algorithm
 import requests
 from datetime import (datetime, timedelta)
-
+import jwt
 
 from bs4 import BeautifulSoup
 from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect
 
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager
+
 
 
 client = MongoClient('localhost', 27017)
 db = client.mini_project
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "super-secret"
-jwt = JWTManager(app)
+SECRET_KEY= "SPARTA"
 bcrypt = Bcrypt(app)
 
 @app.route("/", methods=["POST", "GET"])
 def index():
  
-    token = request.cookies.get('mytoken')
-    
-    if token is not None:
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({"username": payload['id']})
         return render_template("index.html")
-    else:
-        return render_template("login.html")
+    except jwt.ExpiredSignatureError:
+        return redirect("/auth/login")
+    except jwt.exceptions.DecodeError:
+        return redirect("/auth/login")
 
-@app.route("/auth/login", methods=["POST"])
+@app.route("/auth/login", methods=["POST", "GET"])
 def login():
     """
     로그인 기능
     """
     if request.method == "POST":
+        
         username_receive = request.form['username_give']
         password_receive = request.form['password_give']
 
-        
         username_result = hashed_password = db.users.find_one({'username': username_receive}, {"_id": False})["username"]
 
         if username_result is not None:
@@ -54,11 +55,13 @@ def login():
                     'id': username_receive,
                     'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)
                 }
-                token = create_access_token(payload)
+                token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
                 return jsonify({'result': "success", "token": token})
             else:
                 return jsonify({'result': "fail", "msg": "아이디, 비밀번호를 확인해주세요."})
-            
+    elif request.method == "GET":
+        return render_template("login.html")
+        
 @app.route("/auth/signup", methods=["POST", "GET"])
 def signup():
     """
@@ -101,9 +104,17 @@ def movie_detail(movie_id):
     """
     영화 상세 페이지 정보 불러오기
     """
+    token_receive = request.cookies.get("mytoken")
+    if token_receive is None:
+        return redirect("/")
+
+
     movie = db.movie_details.find_one({'movie_id': int(movie_id)}, {"_id": False})
+    reviews = db.comments.find({'movie_id': movie_id})
+    
+
     if movie is not None:
-        return jsonify({"movie": movie, "msg": "success"})
+        return render_template("detail.html", movie=movie, reviews=reviews)
 
 
 @app.route("/movie/<movie_id>/comment", methods=["POST"])
@@ -112,26 +123,44 @@ def comment(movie_id):
     여기서 댓글 기능 구현
     """
     if request.method == "POST":
-        user = db.users.find_one({"username": "heesungj7"}) ##dummy username data
-        
-        user_id = str(user["_id"])
-        movie_id = 1 ## dummy data
-        comment = "I like this movie!!" # dummy data
+        token_receive = request.cookies.get("mytoken")
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+
+        username = (payload["id"])
+        movie_id_receive = movie_id 
+        comment_receive= request.form["comment_give"]
         
         doc ={
-            "user_id": user_id,
-            "movie_id": movie_id,
-            "comment": comment,
+            "user_id": username,
+            "movie_id": movie_id_receive,
+            "comment": comment_receive,
         }
         db.comments.insert_one(doc)
-        return jsonify({"asd":"asd"})
-    
+        return jsonify({"result": "success", "msg": "댓글를 추가했습니다."})
 
-@app.route("/movie/like")
+@app.route("/movie/<movie_id>/comment/delete", methods=["POST"])
+def del_comment(movie_id):
+    if request.method == "POST":
+
+        token_receive = request.cookies.get("mytoken")
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = (payload["id"])
+
+        comment_receive = request.form["comment_give"]
+        target_comment = db.comments.find_one({"user_id": username, "movie_id": movie_id, "comment": comment_receive})
+        
+      
+        if target_comment is not None:
+            db.comments.delete_one({"user_id": username, "movie_id": movie_id, "comment": comment_receive})
+            
+            return jsonify({"result": "success", "msg": "댓글 삭제"})
+        else:
+            return jsonify({"result": "fail", "msg": "다른 사람의 댓글은 삭제할 수 없습니다."})
+
+@app.route("/movie/1/like")
 def like():
-    """
-    여기서 좋아요 기능 구현
-    """
+
     pass
 
 if __name__ == '__main__':

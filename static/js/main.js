@@ -93,29 +93,96 @@ function get_movies() {
                     const booking = movie["booking"];
 
                     const temp_html = `
-                            <section class="card">
+                    <div class="card" >
                         <img
                             class="card-img-top"
                             src="${poster}"
                             alt="Card image cap"
                         />
                         <h5 class="card-title">${title}</h5>
-
                         <div class="card-body">
-                        <div class="card-info">
-                            <span class="card-genre">장르: ${genre}</span>
-                            <span class="card-producer">감독: ${producer}</span>
-                            <span class="card-booking">예매율: ${booking}%</span></div>
-                            
-                            <a href="/movie/${movie_id}" class="btn btn-primary">상세보기</a>
+                            <div class="card-info">
+                                <p>장르: ${genre}</p>
+                                <p>감독: ${producer}</p>
+                                <p>예매율: ${booking}%</p>
+                            </div>
+                            <a
+                                href="/movie/${movie_id}"
+                                class="btn btn-primary"
+                                >상세보기</a
+                            >
                         </div>
-                    </section>
+                        
+                    </div>
                     `;
                     if (title != "") {
                         $("#movies-box").append(temp_html);
                     }
                 });
             } else {
+                alert(response["msg"]);
+            }
+        },
+    });
+}
+
+function create_comment() {
+    const re = /[0-9]/;
+    const url = window.location.pathname;
+
+    const movie_id = re.exec(url)[0];
+
+    const comment = $("#input-comment").val();
+    const token = $.cookie("mytoken");
+
+    $.ajax({
+        type: "POST",
+        url: `/movie/${movie_id}/comment`,
+        data: {
+            comment_give: comment,
+        },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "bearer " + token);
+        },
+        success: function (response) {
+            if (response["result"] == "success") {
+                alert(response["msg"]);
+                location.reload();
+            } else {
+                alert(response["msg"]);
+            }
+        },
+    });
+}
+
+function delete_comment(e) {
+    let comment_give = "";
+    if (e.target.tagName == "BUTTON") {
+        const parent = e.target.parentNode;
+        comment_give =
+            parent.firstChild.nextSibling.firstChild.nextSibling.textContent;
+    } else if (e.target.tagName == "svg") {
+        comment_give =
+            e.target.parentNode.parentNode.firstChild.nextSibling.firstChild
+                .nextSibling.textContent;
+    }
+
+    const re = /[0-9]/;
+    const url = window.location.pathname;
+    const movie_id = re.exec(url)[0];
+
+    $.ajax({
+        type: "POST",
+        url: `/movie/${movie_id}/comment/delete`,
+        data: {
+            movie_give: movie_id,
+            comment_give: comment_give,
+        },
+        success: function (response) {
+            if (response["result"] == "success") {
+                alert(response["msg"]);
+                location.reload();
+            } else if (response["result"] == "fail") {
                 alert(response["msg"]);
             }
         },
